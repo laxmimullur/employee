@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .form {
+            margin-bottom: 20px;
+        }
+        input {
+            padding: 5px;
+            margin-right: 5px;
+        }
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #f0f0f0;
+            margin-bottom: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee Management System</h1>
+
+    <div class="form">
+        <input type="text" id="employeeName" placeholder="Enter employee name">
+        <button onclick="addEmployee()">Add Employee</button>
+    </div>
+
+    <h2>Employee List</h2>
+    <ul id="employeeList"></ul>
+
+    <script>
+        let employees = [];
+
+        function addEmployee() {
+            const nameInput = document.getElementById("employeeName");
+            const name = nameInput.value.trim();
+
+            if (name === "") {
+                alert("Please enter a name");
+                return;
+            }
+
+            employees.push(name);
+            nameInput.value = "";
+            displayEmployees();
+        }
+
+        function displayEmployees() {
+            const list = document.getElementById("employeeList");
+            list.innerHTML = "";
+
+            employees.forEach((employee, index) => {
+                const li = document.createElement("li");
+                li.textContent = `${index + 1}. ${employee}`;
+                list.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
